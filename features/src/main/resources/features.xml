@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="karaf-validation-${project.version}"
+    xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://karaf.apache.org/xmlns/features/v1.0.0
+        http://karaf.apache.org/xmlns/features/v1.0.0
+    ">
+
+    <feature name="geronimo-osgi-locator" version="${geronimo-spec-locator.version}">
+        <bundle>mvn:org.apache.geronimo.specs/geronimo-osgi-locator/${geronimo-spec-locator.version}</bundle>
+    </feature>
+
+    <feature name="geronimo-osgi-registry" version="${geronimo-spec-locator.version}">
+        <bundle dependency="true" start-level="8">mvn:org.apache.geronimo.specs/geronimo-osgi-registry/${geronimo-spec-locator.version}</bundle>
+    </feature>
+
+    <feature name="validation-api" version="${geronimo-validation-1.0-spec.version}">
+        <bundle>mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/${geronimo-validation-1.0-spec.version}</bundle>
+    </feature>
+
+    <feature name="el-api" version="${geronimo-el-2.2-spec.version}">
+        <bundle>mvn:org.apache.geronimo.specs/geronimo-el_2.2_spec/${geronimo-el-2.2-spec.version}</bundle>
+    </feature>
+
+    <feature name="validation-api" version="${geronimo-validation-1.1-spec.version}">
+        <bundle>mvn:org.apache.geronimo.specs/geronimo-validation_1.1_spec/${geronimo-validation-1.1-spec.version}</bundle>
+    </feature>
+
+    <feature name="bval-validation-provider">
+        <feature version="${geronimo-spec-locator.version}">geronimo-osgi-registry</feature>
+        <feature version="${geronimo-validation-1.1-spec.version}">validation-api</feature>
+        <feature version="${geronimo-el-2.2-spec.version}">el-api</feature>
+
+        <bundle>mvn:org.apache.commons/commons-weaver-privilizer-api/${commons-weaver.version}</bundle>
+        <bundle>mvn:org.apache.commons/commons-lang3/${commons-lang3.version}</bundle>
+        <bundle>mvn:commons-collections/commons-collections/${commons-collections.version}</bundle>
+        <bundle>mvn:commons-beanutils/commons-beanutils/${commons-beanutils.version}</bundle>
+        <bundle>mvn:org.apache.bval/org.apache.bval.bundle/${bval.version}</bundle>
+    </feature>
+
+</features>
