@@ -7,35 +7,26 @@
         http://karaf.apache.org/xmlns/features/v1.0.0
     ">
 
-    <feature name="geronimo-osgi-locator" version="${geronimo-spec-locator.version}">
-        <bundle>mvn:org.apache.geronimo.specs/geronimo-osgi-locator/${geronimo-spec-locator.version}</bundle>
-    </feature>
-
-    <feature name="geronimo-osgi-registry" version="${geronimo-spec-locator.version}">
-        <bundle dependency="true" start-level="8">mvn:org.apache.geronimo.specs/geronimo-osgi-registry/${geronimo-spec-locator.version}</bundle>
-    </feature>
-
-    <feature name="validation-api" version="${geronimo-validation-1.0-spec.version}">
-        <bundle>mvn:org.apache.geronimo.specs/geronimo-validation_1.0_spec/${geronimo-validation-1.0-spec.version}</bundle>
-    </feature>
-
     <feature name="el-api" version="${geronimo-el-2.2-spec.version}">
         <bundle>mvn:org.apache.geronimo.specs/geronimo-el_2.2_spec/${geronimo-el-2.2-spec.version}</bundle>
     </feature>
 
-    <feature name="validation-api" version="${geronimo-validation-1.1-spec.version}">
-        <bundle>mvn:org.apache.geronimo.specs/geronimo-validation_1.1_spec/${geronimo-validation-1.1-spec.version}</bundle>
+    <feature name="validation-api" version="${validation-spec.version}">
+        <bundle>mvn:javax.validation/validation-api/${validation-spec.version}</bundle>
+    </feature>
+
+    <feature name="validation-resolver" version="${project.version}">
+        <feature version="${validation-spec.version}">validation-api</feature>
+        <bundle>mvn:org.code-house.validation/resolver/${project.version}</bundle>
     </feature>
 
     <feature name="bval-validation-provider">
-        <feature version="${geronimo-spec-locator.version}">geronimo-osgi-registry</feature>
-        <feature version="${geronimo-validation-1.1-spec.version}">validation-api</feature>
+        <feature version="${validation-spec.version}">validation-api</feature>
         <feature version="${geronimo-el-2.2-spec.version}">el-api</feature>
 
-        <bundle>mvn:org.apache.commons/commons-weaver-privilizer-api/${commons-weaver.version}</bundle>
-        <bundle>mvn:org.apache.commons/commons-lang3/${commons-lang3.version}</bundle>
-        <bundle>mvn:commons-collections/commons-collections/${commons-collections.version}</bundle>
-        <bundle>mvn:commons-beanutils/commons-beanutils/${commons-beanutils.version}</bundle>
+        <bundle>mvn:org.apache.commons/commons-weaver-privilizer-api/1.2</bundle>
+        <bundle>mvn:org.apache.commons/commons-lang3/3.3.2</bundle>
+        <bundle>wrap:mvn:commons-beanutils/commons-beanutils-core/1.8.3</bundle>
         <bundle>mvn:org.apache.bval/org.apache.bval.bundle/${bval.version}</bundle>
     </feature>
 

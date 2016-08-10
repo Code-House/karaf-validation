@@ -21,6 +21,7 @@
         <module>parent</module>
         <module>features</module>
         <module>itests</module>
+        <module>resolver</module>
     </modules>
 
 </project>

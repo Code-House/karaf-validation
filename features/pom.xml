@@ -16,6 +16,18 @@
     <description>Jackson features</description>
 
     <dependencies>
+        <dependency>
+            <groupId>org.code-house.validation</groupId>
+            <artifactId>resolver</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.bval</groupId>
+            <artifactId>org.apache.bval.bundle</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -50,16 +62,15 @@
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
-                <version>${karaf.version}</version>
                 <executions>
                     <execution>
                         <id>create-kar</id>
                         <goals>
-                            <goal>features-create-kar</goal>
+                            <goal>kar</goal>
                         </goals>
                     </execution>
                 </executions>
-               <configuration>
+                <configuration>
                     <featuresFile>${project.build.outputDirectory}/features.xml</featuresFile>
                 </configuration>
                 <extensions>true</extensions>

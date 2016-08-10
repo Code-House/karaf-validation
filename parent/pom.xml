@@ -20,24 +20,35 @@
         <karaf.version>4.0.5</karaf.version>
         <bval.version>1.1.1</bval.version>
 
-        <commons-lang3.version>3.3.2</commons-lang3.version>
-        <commons-collections.version>3.2.1</commons-collections.version>
-        <commons-beanutils.version>1.8.3</commons-beanutils.version>
-        <commons-weaver.version>1.1</commons-weaver.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <validation-spec.version>1.1.0.Final</validation-spec.version>
+        <osgi.version>4.3.1</osgi.version>
 
-        <geronimo-validation-1.1-spec.version>1.0-alpha-1</geronimo-validation-1.1-spec.version>
-        <geronimo-validation-1.0-spec.version>1.1</geronimo-validation-1.0-spec.version>
         <geronimo-spec-locator.version>1.1</geronimo-spec-locator.version>
         <geronimo-atinject-spec.version>1.0</geronimo-atinject-spec.version>
         <geronimo-el-2.2-spec.version>1.0.4</geronimo-el-2.2-spec.version>
 
-        <pax-exam.version>4.5.0</pax-exam.version>
+        <pax-exam.version>4.9.1</pax-exam.version>
 
+        <maven-bundle-plugin.version>3.2.0</maven-bundle-plugin.version>
+        <maven-release-plugin.version>2.8.2</maven-release-plugin.version>
         <servicemix-depends-plugin.version>1.2</servicemix-depends-plugin.version>
+
+        <!-- Build env -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.code-house.validation</groupId>
+                <artifactId>resolver</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>org.code-house.validation</groupId>
                 <artifactId>features</artifactId>
@@ -47,9 +58,21 @@
             </dependency>
 
             <dependency>
+                <groupId>javax.validation</groupId>
+                <artifactId>validation-api</artifactId>
+                <version>${validation-spec.version}</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.apache.bval</groupId>
                 <artifactId>org.apache.bval.bundle</artifactId>
                 <version>${bval.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
             </dependency>
 
             <dependency>
@@ -72,16 +95,6 @@
 
             <dependency>
                 <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-validation_1.0_spec</artifactId>
-                <version>${geronimo-validation-1.0-spec.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-validation_1.1_spec</artifactId>
-                <version>${geronimo-validation-1.1-spec.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
                 <artifactId>geronimo-atinject_1.0_spec</artifactId>
                 <version>${geronimo-atinject-spec.version}</version>
             </dependency>
@@ -92,35 +105,14 @@
             </dependency>
 
             <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-osgi-locator</artifactId>
-                <version>${geronimo-spec-locator.version}</version>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>${osgi.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.apache.geronimo.specs</groupId>
-                <artifactId>geronimo-osgi-registry</artifactId>
-                <version>${geronimo-spec-locator.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-lang3</artifactId>
-                <version>${commons-lang3.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-beanutils</groupId>
-                <artifactId>commons-beanutils-core</artifactId>
-                <version>${commons-beanutils.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>commons-collections</groupId>
-                <artifactId>commons-collections</artifactId>
-                <version>${commons-collections.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.commons</groupId>
-                <artifactId>commons-weaver-privilizer-api</artifactId>
-                <version>${commons-weaver.version}</version>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.compendium</artifactId>
+                <version>${osgi.version}</version>
             </dependency>
 
             <dependency>
@@ -140,12 +132,49 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.servicemix.tooling</groupId>
                     <artifactId>depends-maven-plugin</artifactId>
                     <version>${servicemix-depends-plugin.version}</version>
                 </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${maven-release-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>${karaf.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.apache.maven.wagon</groupId>
+                            <artifactId>wagon-http</artifactId>
+                            <version>2.10</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven-bundle-plugin.version}</version>
+                </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
