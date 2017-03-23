@@ -11,7 +11,7 @@
 
     <groupId>org.code-house</groupId>
     <artifactId>validation</artifactId>
-    <version>4.0.0-SNAPSHOT</version>
+    <version>4.0.0</version>
     <packaging>pom</packaging>
 
     <name>Code-House :: Validation</name>
@@ -21,7 +21,8 @@
         <connection>scm:git:https://github.com/Code-House/karaf-validation.git</connection>
         <developerConnection>scm:git:git@github.com:Code-House/karaf-validation.git</developerConnection>
         <url>https://github.com/code-house/karaf-validation</url>
-    </scm>
+      <tag>validation-4.0.0</tag>
+  </scm>
 
     <modules>
         <module>parent</module>
