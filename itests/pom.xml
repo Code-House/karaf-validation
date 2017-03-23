@@ -52,6 +52,11 @@
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-container-karaf</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.code-house.validation.example</groupId>
+            <artifactId>api</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
