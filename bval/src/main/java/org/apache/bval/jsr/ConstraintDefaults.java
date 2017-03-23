@@ -28,7 +28,7 @@ import java.util.Map;
 
 /**
  * Description: Provides access to the default constraints/validator implementation classes built into the framework.
- * These are configured in DefaultConstraints.properties.<br/>
+ * These are configured in DefaultConstraints.properties.
  */
 public class ConstraintDefaults {
 

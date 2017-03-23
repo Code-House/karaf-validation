@@ -1,5 +1,5 @@
 /*
- * (C) Copyright 2016 Code-House and others.
+ * (C) Copyright 2016-2017 Code-House and others.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import javax.validation.spi.ValidationProvider;
 import java.util.List;
 
 /**
- * @author Łukasz Dywicki <luke@code-house.org>
+ * @author Łukasz Dywicki &lt;luke@code-house.org&gt;
  */
 public class OsgiValidationProviderResolver implements ValidationProviderResolver {
 
