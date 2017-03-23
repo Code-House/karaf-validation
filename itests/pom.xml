@@ -28,6 +28,7 @@
         <dependency>
             <groupId>org.code-house.validation.example</groupId>
             <artifactId>core</artifactId>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
