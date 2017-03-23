@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="karaf-validation-${project.version}"
-    xmlns="http://karaf.apache.org/xmlns/features/v1.0.0"
+    xmlns="http://karaf.apache.org/xmlns/features/v1.4.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
-        http://karaf.apache.org/xmlns/features/v1.0.0
-        http://karaf.apache.org/xmlns/features/v1.0.0
+        http://karaf.apache.org/xmlns/features/v1.4.0
+        http://karaf.apache.org/xmlns/features/v1.4.0
     ">
 
     <feature name="el-api" version="${geronimo-el-2.2-spec.version}">
@@ -25,9 +25,11 @@
         <feature version="${geronimo-el-2.2-spec.version}">el-api</feature>
 
         <bundle>mvn:org.apache.commons/commons-weaver-privilizer-api/1.2</bundle>
-        <bundle>mvn:org.apache.commons/commons-lang3/3.3.2</bundle>
+        <bundle>mvn:org.apache.commons/commons-lang3/3.5</bundle>
         <bundle>wrap:mvn:commons-beanutils/commons-beanutils-core/1.8.3</bundle>
-        <bundle>mvn:org.apache.bval/org.apache.bval.bundle/${bval.version}</bundle>
+        <bundle>mvn:org.code-house.validation/bval/${project.version}</bundle>
+
+        <capability>validation-provider;version=${validation-spec.version};provider=bval</capability>
     </feature>
 
 </features>

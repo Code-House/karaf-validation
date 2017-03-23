@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.code-house.validation</groupId>
+        <artifactId>parent</artifactId>
+        <version>3.0.0-SNAPSHOT</version>
+        <relativePath>../parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>bval</artifactId>
+    <packaging>bundle</packaging>
+
+    <name>Code-House :: Validation :: BVal 1.1.2 custom bundle</name>
+    <description>Jackson features</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.bval</groupId>
+            <artifactId>bval-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.bval</groupId>
+            <artifactId>bval-jsr</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Export-Package>
+                            org.apache.bval.*;version=${bval.version};-split-package:=merge-first
+                        </Export-Package>
+                        <Import-Package>
+                            !org.apache.bval.*,
+                            javax.enterprise.*;resolution:=optional,
+                            javax.inject.*;resolution:=optional,
+                            javax.interceptor.*;resolution:=optional,
+                            javax.persistence.*;resolution:=optional,
+                            *
+                        </Import-Package>
+                        <Embed-Dependency>*;groupId=org.apache.bval;inline=META-INF/**</Embed-Dependency>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

@@ -24,6 +24,12 @@
             <type>xml</type>
         </dependency>
 
+        <!-- This dependency will pull in example api and model -->
+        <dependency>
+            <groupId>org.code-house.validation.example</groupId>
+            <artifactId>core</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.apache.karaf</groupId>
             <artifactId>apache-karaf</artifactId>

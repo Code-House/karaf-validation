@@ -17,21 +17,19 @@
     <description>Bean validation integration parent</description>
 
     <properties>
-        <karaf.version>4.0.5</karaf.version>
-        <bval.version>1.1.1</bval.version>
+        <karaf.version>4.0.8</karaf.version>
+        <bval.version>1.1.2</bval.version>
 
         <slf4j.version>1.7.21</slf4j.version>
         <validation-spec.version>1.1.0.Final</validation-spec.version>
         <osgi.version>4.3.1</osgi.version>
 
-        <geronimo-spec-locator.version>1.1</geronimo-spec-locator.version>
         <geronimo-atinject-spec.version>1.0</geronimo-atinject-spec.version>
         <geronimo-el-2.2-spec.version>1.0.4</geronimo-el-2.2-spec.version>
 
         <pax-exam.version>4.9.1</pax-exam.version>
 
-        <maven-bundle-plugin.version>3.2.0</maven-bundle-plugin.version>
-        <maven-release-plugin.version>2.8.2</maven-release-plugin.version>
+        <maven-bundle-plugin.version>3.3.0</maven-bundle-plugin.version>
         <servicemix-depends-plugin.version>1.2</servicemix-depends-plugin.version>
 
         <!-- Build env -->
@@ -47,7 +45,27 @@
                 <artifactId>resolver</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.code-house.validation</groupId>
+                <artifactId>bval</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>org.code-house.validation.example</groupId>
+                <artifactId>model</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.code-house.validation.example</groupId>
+                <artifactId>api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.code-house.validation.example</groupId>
+                <artifactId>core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>org.code-house.validation</groupId>
@@ -65,7 +83,17 @@
 
             <dependency>
                 <groupId>org.apache.bval</groupId>
-                <artifactId>org.apache.bval.bundle</artifactId>
+                <artifactId>bval-core</artifactId>
+                <version>${bval.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.bval</groupId>
+                <artifactId>bval-jsr</artifactId>
+                <version>${bval.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.bval</groupId>
+                <artifactId>bval-extras</artifactId>
                 <version>${bval.version}</version>
             </dependency>
 
@@ -143,11 +171,6 @@
                     <groupId>org.apache.servicemix.tooling</groupId>
                     <artifactId>depends-maven-plugin</artifactId>
                     <version>${servicemix-depends-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>${maven-release-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.karaf.tooling</groupId>
